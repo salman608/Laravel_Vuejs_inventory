@@ -51,7 +51,7 @@
   </div>
 </template>
 <script type="text/javascript">
-import { assertExpressionStatement } from '@babel/types';
+
 
   export default{
     data(){
@@ -66,7 +66,7 @@ import { assertExpressionStatement } from '@babel/types';
     methods:{
         login(){
             axios.post('/api/auth/login',this.form)
-            .then(res=> console.log(res.data))
+            .then(res=> User.responseAfterLogin(res))
             .catch(error=> console.log(error.response.data))
         }
     }
