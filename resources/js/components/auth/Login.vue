@@ -16,7 +16,8 @@
                         placeholder="Enter Email Address" v-model="form.email">
                     </div>
                     <div class="form-group">
-                      <input type="password" class="form-control" id="exampleInputPassword" placeholder="Password" v-model="form.password">
+                      <input type="password" class="form-control" id="exampleInputPassword" placeholder="Password"
+                        v-model="form.password">
                     </div>
                     <div class="form-group">
 
@@ -24,7 +25,7 @@
                         <input type="checkbox" class="custom-control-input" id="customCheck">
                         <label class="custom-control-label" for="customCheck">Remember
                           Me</label>
-                    </div>
+                      </div>
                     </div>
                     <div class="form-group">
                       <button type="submit" class="btn btn-primary btn-block">Login</button>
@@ -36,7 +37,7 @@
                   <hr>
 
                   <div class="text-center">
-                    <router-link to="/register" class="font-weight-bold small">Create an Account!</router-link>  ||
+                    <router-link to="/register" class="font-weight-bold small">Create an Account!</router-link> ||
                     <router-link to="/forget" class="font-weight-bold small">Forgot password</router-link>
                   </div>
 
@@ -53,32 +54,42 @@
 <script type="text/javascript">
 
 
-  export default{
-    created(){
-        if(User.loggedIn()){
-           this.$router.push({name:'home'})
-        }
-    },
-    data(){
-      return{
-        form:{
-        email:null,
-        password:null,
+export default {
+  created() {
+    if (User.loggedIn()) {
+      this.$router.push({ name: 'home' })
+    }
+  },
+  data() {
+    return {
+      form: {
+        email: null,
+        password: null,
 
       }
-      }
-    },
-    methods:{
-        login(){
-            axios.post('/api/auth/login',this.form)
-            .then(res=> {
-                User.responseAfterLogin(res)
-                this.$router.push({name:'home'})
-            })
-            .catch(error=> console.log(error.response.data))
-        }
+    }
+  },
+  methods: {
+    login() {
+      axios.post('/api/auth/login', this.form)
+        .then(res => {
+          User.responseAfterLogin(res)
+          Toast.fire({
+            icon: 'success',
+            title: 'Signed in successfully'
+          })
+          this.$router.push({ name: 'home' })
+        })
+        .catch(error => this.errors=error.response.data.errors)
+        .catch(
+          Toast.fire({
+            icon: 'warning',
+            title: 'Invalid Email & Password'
+          })
+        )
     }
   }
+}
 </script>
 
 
