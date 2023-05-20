@@ -31,19 +31,13 @@
                     </div>
                     <div class="form-group">
                       <button type="submit" class="btn btn-primary btn-block">Login</button>
-
                     </div>
-
-
                   </form>
                   <hr>
-
                   <div class="text-center">
                     <router-link to="/register" class="font-weight-bold small">Create an Account!</router-link> ||
                     <router-link to="/forget" class="font-weight-bold small">Forgot password</router-link>
                   </div>
-
-
                 </div>
               </div>
             </div>
@@ -53,9 +47,8 @@
     </div>
   </div>
 </template>
+
 <script type="text/javascript">
-
-
 export default {
   created() {
     if (User.loggedIn()) {

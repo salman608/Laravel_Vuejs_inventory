@@ -12,7 +12,7 @@ import {routes} from './routes';
 // Import user class
 
 import User from './Helpers/User';
-window.User=User
+window.User=User;
 
 //sweet alert start
 import Swal from 'sweetalert2';
