@@ -320,10 +320,18 @@
                     </div>
     </div>
   </template>
+  <script type="text/javascript">
 
-  <script>
 
-  </script>
+  export default{
+    created(){
+        if(!User.loggedIn()){
+           this.$router.push({name:'/'})
+        }
+    }
+
+  }
+</script>
   <style lang="">
 
   </style>
