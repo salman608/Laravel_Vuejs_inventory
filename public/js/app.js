@@ -28575,7 +28575,7 @@ var render = function () {
                         "router-link",
                         {
                           staticClass: "font-weight-bold small",
-                          attrs: { to: "/login" },
+                          attrs: { to: "/forget" },
                         },
                         [_vm._v("Forgot password")]
                       ),
@@ -28710,7 +28710,7 @@ var render = function () {
                         "router-link",
                         {
                           staticClass: "font-weight-bold small",
-                          attrs: { to: "/login" },
+                          attrs: { to: "/" },
                         },
                         [_vm._v("Already have an account?")]
                       ),

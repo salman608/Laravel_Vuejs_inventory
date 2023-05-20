@@ -19,28 +19,28 @@
                       <input type="password" class="form-control" id="exampleInputPassword" placeholder="Password">
                     </div>
                     <div class="form-group">
-                    
+
                       <div class="custom-control custom-checkbox small" style="line-height: 1.5rem;">
                         <input type="checkbox" class="custom-control-input" id="customCheck">
                         <label class="custom-control-label" for="customCheck">Remember
-                          Me</label>  
+                          Me</label>
                     </div>
                     </div>
                     <div class="form-group">
                       <a href="index.html" class="btn btn-primary btn-block">Login</a>
-                     
+
                     </div>
-                  
-                  
+
+
                   </form>
                   <hr>
-                  
+
                   <div class="text-center">
                     <router-link to="/register" class="font-weight-bold small">Create an Account!</router-link>  ||
-                    <router-link to="/login" class="font-weight-bold small">Forgot password</router-link>
+                    <router-link to="/forget" class="font-weight-bold small">Forgot password</router-link>
                   </div>
-                 
-                  
+
+
                 </div>
               </div>
             </div>
@@ -54,5 +54,5 @@
 
 </script>
 <style lang="">
-  
+
 </style>

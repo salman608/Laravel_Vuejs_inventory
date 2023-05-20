@@ -17,7 +17,7 @@ class AuthController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth:api', ['except' => ['login']]);
+        $this->middleware('auth:api', ['except' => ['login', 'signup']]);
     }
 
     /**
@@ -71,7 +71,7 @@ class AuthController extends Controller
     }
 
 
-    public function singup(Request $request)
+    public function signup(Request $request)
     {
         $validateData = $request->validate([
             'name' => 'required',

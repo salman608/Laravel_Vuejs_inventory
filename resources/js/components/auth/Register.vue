@@ -14,7 +14,7 @@
                     <div class="form-group">
                       <input type="text" class="form-control" id="exampleInputFirstName" placeholder="Enter First Name">
                     </div>
-                   
+
                     <div class="form-group">
                       <input type="email" class="form-control" id="exampleInputEmail" aria-describedby="emailHelp"
                         placeholder="Enter Email Address">
@@ -29,11 +29,11 @@
                     <div class="form-group">
                       <button type="submit" class="btn btn-primary btn-block">Register</button>
                     </div>
-                
+
                   </form>
                   <hr>
                   <div class="text-center">
-                    <router-link to="/login" class="font-weight-bold small">Already have an account?</router-link>
+                    <router-link to="/" class="font-weight-bold small">Already have an account?</router-link>
                   </div>
                   <div class="text-center">
                   </div>
@@ -50,5 +50,5 @@
 
 </script>
 <style lang="">
-  
+
 </style>
