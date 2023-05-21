@@ -30,9 +30,10 @@
                     </a>
                     <hr class="sidebar-divider my-0">
                     <li class="nav-item active">
-                        <a class="nav-link" href="index.html">
+                        <router-link class="nav-link" to="/home">
                             <i class="fas fa-fw fa-tachometer-alt"></i>
-                            <span>Dashboard</span></a>
+                            <span>Dashboard</span>
+                        </router-link>
                     </li>
                     <hr class="sidebar-divider">
                     <div class="sidebar-heading">
@@ -42,48 +43,35 @@
                         <a class="nav-link collapsed" href="#" data-toggle="collapse"
                             data-target="#collapseBootstrap" aria-expanded="true" aria-controls="collapseBootstrap">
                             <i class="far fa-fw fa-window-maximize"></i>
-                            <span>Bootstrap UI</span>
+                            <span>Employee</span>
                         </a>
                         <div id="collapseBootstrap" class="collapse" aria-labelledby="headingBootstrap"
                             data-parent="#accordionSidebar">
                             <div class="bg-white py-2 collapse-inner rounded">
-                                <h6 class="collapse-header">Bootstrap UI</h6>
-                                <a class="collapse-item" href="alerts.html">Alerts</a>
-                                <a class="collapse-item" href="buttons.html">Buttons</a>
-                                <a class="collapse-item" href="dropdowns.html">Dropdowns</a>
-                                <a class="collapse-item" href="modals.html">Modals</a>
-                                <a class="collapse-item" href="popovers.html">Popovers</a>
-                                <a class="collapse-item" href="progress-bar.html">Progress Bars</a>
+
+                                <router-link class="collapse-item" to="/store-employee">Add Employee</router-link>
+                                <router-link class="collapse-item" to="">All Employee</router-link>
+
                             </div>
                         </div>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="forms.html">
-                            <i class="fab fa-fw fa-wpforms"></i>
-                            <span>Forms</span>
-                        </a>
-                    </li>
+
                     <li class="nav-item">
                         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTable"
                             aria-expanded="true" aria-controls="collapseTable">
                             <i class="fas fa-fw fa-table"></i>
-                            <span>Tables</span>
+                            <span>Suppliers</span>
                         </a>
                         <div id="collapseTable" class="collapse" aria-labelledby="headingTable"
                             data-parent="#accordionSidebar">
                             <div class="bg-white py-2 collapse-inner rounded">
-                                <h6 class="collapse-header">Tables</h6>
-                                <a class="collapse-item" href="simple-tables.html">Simple Tables</a>
-                                <a class="collapse-item" href="datatables.html">DataTables</a>
+
+                                <a class="collapse-item" href="simple-tables.html">Add Suppliers</a>
+                                <a class="collapse-item" href="datatables.html">All Suppliers</a>
                             </div>
                         </div>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="ui-colors.html">
-                            <i class="fas fa-fw fa-palette"></i>
-                            <span>UI Colors</span>
-                        </a>
-                    </li>
+
                     <hr class="sidebar-divider">
                     <div class="sidebar-heading">
                         Examples
