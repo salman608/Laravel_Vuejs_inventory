@@ -10,9 +10,12 @@ Vue.use(VueRouter)
 import {routes} from './routes';
 
 // Import user class
-
 import User from './Helpers/User';
 window.User=User;
+
+// Import Notification class
+import Notification from './Helpers/Notification';
+window.Notification=Notification;
 
 //sweet alert start
 import Swal from 'sweetalert2';
