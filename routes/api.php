@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\Api\EmployeeController;
+
 use App\Http\Controllers\AuthController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -30,5 +30,7 @@ Route::group([
     Route::post('refresh', 'AuthController@refresh');
     Route::post('me', 'AuthController@me');
 });
-
-Route::apiResource('/employee', [EmployeeController::class]);
+Route::apiResource('/employee', 'Api\EmployeeController');
+// Route::apiResource('/employee', EmployeeController::class);
+// Route::get('/employee', 'Api\EmployeeController@index');
+// Route::post('/employee', 'Api\EmployeeController@store');
