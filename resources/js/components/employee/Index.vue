@@ -2,10 +2,16 @@
     <div>
         <div class="row">
             <div class="col-lg-12 mb-4">
+                <router-link to="/store-employee" class="btn btn-warning">Add Employee</router-link>
+                <br>
+                <br>
               <!-- Simple Tables -->
               <div class="card">
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                   <h6 class="m-0 font-weight-bold text-primary">Employee List</h6>
+                  <input type="text" v-model="searchTerm" class="form-controll" placeholder="Search Here....">
+
+
                 </div>
                 <div class="table-responsive">
                   <table class="table align-items-center table-flush">
@@ -20,7 +26,7 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <tr v-for="employee in employees" :key="employee.id">
+                      <tr v-for="employee in filtersearch" :key="employee.id">
                         <td>{{ employee.name }}</td>
                         <td><img :src="employee.photo" alt="" id="em_photo"></td>
                         <td>{{ employee.phone }}</td>
@@ -51,8 +57,18 @@
 
     data(){
        return{
-        employees:[]
+        employees:[],
+        searchTerm:''
        }
+    },
+
+    computed:{
+        filtersearch(){
+            return this.employees.filter(employee =>{
+                return employee.phone.match(this.searchTerm)
+
+            })
+        }
     },
 
     mounted(){

@@ -5888,6 +5888,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   created: function created() {
@@ -5899,18 +5905,27 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      employees: []
+      employees: [],
+      searchTerm: ''
     };
+  },
+  computed: {
+    filtersearch: function filtersearch() {
+      var _this = this;
+      return this.employees.filter(function (employee) {
+        return employee.phone.match(_this.searchTerm);
+      });
+    }
   },
   mounted: function mounted() {
     this.allEmployee();
   },
   methods: {
     allEmployee: function allEmployee() {
-      var _this = this;
+      var _this2 = this;
       axios.get('/api/employee/').then(function (_ref) {
         var data = _ref.data;
-        return _this.employees = data;
+        return _this2.employees = data;
       })["catch"]();
     }
   }
@@ -38439,72 +38454,106 @@ var render = function () {
   var _c = _vm._self._c || _h
   return _c("div", [
     _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col-lg-12 mb-4" }, [
-        _c("div", { staticClass: "card" }, [
-          _vm._m(0),
+      _c(
+        "div",
+        { staticClass: "col-lg-12 mb-4" },
+        [
+          _c(
+            "router-link",
+            {
+              staticClass: "btn btn-warning",
+              attrs: { to: "/store-employee" },
+            },
+            [_vm._v("Add Employee")]
+          ),
           _vm._v(" "),
-          _c("div", { staticClass: "table-responsive" }, [
+          _c("br"),
+          _vm._v(" "),
+          _c("br"),
+          _vm._v(" "),
+          _c("div", { staticClass: "card" }, [
             _c(
-              "table",
-              { staticClass: "table align-items-center table-flush" },
+              "div",
+              {
+                staticClass:
+                  "card-header py-3 d-flex flex-row align-items-center justify-content-between",
+              },
               [
-                _vm._m(1),
+                _c("h6", { staticClass: "m-0 font-weight-bold text-primary" }, [
+                  _vm._v("Employee List"),
+                ]),
                 _vm._v(" "),
-                _c(
-                  "tbody",
-                  _vm._l(_vm.employees, function (employee) {
-                    return _c("tr", { key: employee.id }, [
-                      _c("td", [_vm._v(_vm._s(employee.name))]),
-                      _vm._v(" "),
-                      _c("td", [
-                        _c("img", {
-                          attrs: {
-                            src: employee.photo,
-                            alt: "",
-                            id: "em_photo",
-                          },
-                        }),
-                      ]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v(_vm._s(employee.phone))]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v(_vm._s(employee.sallery))]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v(_vm._s(employee.joining_date))]),
-                      _vm._v(" "),
-                      _vm._m(2, true),
-                    ])
-                  }),
-                  0
-                ),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.searchTerm,
+                      expression: "searchTerm",
+                    },
+                  ],
+                  staticClass: "form-controll",
+                  attrs: { type: "text", placeholder: "Search Here...." },
+                  domProps: { value: _vm.searchTerm },
+                  on: {
+                    input: function ($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.searchTerm = $event.target.value
+                    },
+                  },
+                }),
               ]
             ),
+            _vm._v(" "),
+            _c("div", { staticClass: "table-responsive" }, [
+              _c(
+                "table",
+                { staticClass: "table align-items-center table-flush" },
+                [
+                  _vm._m(0),
+                  _vm._v(" "),
+                  _c(
+                    "tbody",
+                    _vm._l(_vm.filtersearch, function (employee) {
+                      return _c("tr", { key: employee.id }, [
+                        _c("td", [_vm._v(_vm._s(employee.name))]),
+                        _vm._v(" "),
+                        _c("td", [
+                          _c("img", {
+                            attrs: {
+                              src: employee.photo,
+                              alt: "",
+                              id: "em_photo",
+                            },
+                          }),
+                        ]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(_vm._s(employee.phone))]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(_vm._s(employee.sallery))]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(_vm._s(employee.joining_date))]),
+                        _vm._v(" "),
+                        _vm._m(1, true),
+                      ])
+                    }),
+                    0
+                  ),
+                ]
+              ),
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "card-footer" }),
           ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "card-footer" }),
-        ]),
-      ]),
+        ],
+        1
+      ),
     ]),
   ])
 }
 var staticRenderFns = [
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      {
-        staticClass:
-          "card-header py-3 d-flex flex-row align-items-center justify-content-between",
-      },
-      [
-        _c("h6", { staticClass: "m-0 font-weight-bold text-primary" }, [
-          _vm._v("Employee List"),
-        ]),
-      ]
-    )
-  },
   function () {
     var _vm = this
     var _h = _vm.$createElement
