@@ -5,9 +5,11 @@ let Forget=require('./components/auth/Forget.vue').default;
 let Logout=require('./components/auth/Logout.vue').default;
 
 let home=require('./components/home.vue').default;
-//employee
+
+//Employee Routes
 let storeemployee=require('./components/employee/Create.vue').default;
 let employee=require('./components/employee/Index.vue').default;
+let editemployee=require('./components/employee/Edit.vue').default;
 
 export const routes = [
   { path: '/', component: Login, name:'/' },
@@ -15,7 +17,9 @@ export const routes = [
   { path: '/forget', component: Forget , name:'/forget' },
   { path: '/logout', component: Logout , name:'/logout' },
   { path: '/home', component: home , name:'home' },
-  //employee
+
+  //Employee Route
   { path: '/store-employee', component: storeemployee , name:'store-employee' },
-  { path: '/employee', component: employee , name:'employee' }
+  { path: '/employee', component: employee , name:'employee' },
+  { path: '/edit-employee/:id', component: editemployee , name:'edit-employee' }
 ]
