@@ -16,6 +16,12 @@ let storesupplier=require('./components/supplier/Create.vue').default;
 let supplier=require('./components/supplier/Index.vue').default;
 let editsupplier=require('./components/supplier/Edit.vue').default;
 
+//category Routes
+let storecategory=require('./components/category/Create.vue').default;
+let category=require('./components/category/Index.vue').default;
+let editcategory=require('./components/category/Edit.vue').default;
+
+
 
 
 export const routes = [
@@ -33,5 +39,10 @@ export const routes = [
   //Supplier Route
   { path: '/store-supplier', component: storesupplier , name:'store-supplier' },
   { path: '/supplier', component: supplier , name:'supplier' },
-  { path: '/edit-supplier/:id', component: editsupplier , name:'edit-supplier' }
+  { path: '/edit-supplier/:id', component: editsupplier , name:'edit-supplier' },
+
+  //Category Route
+  { path: '/store-category', component: storecategory , name:'store-category' },
+  { path: '/category', component: category , name:'category' },
+  { path: '/edit-category/:id', component: editcategory , name:'edit-category' }
 ]

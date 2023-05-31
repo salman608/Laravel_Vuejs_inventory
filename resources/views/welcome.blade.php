@@ -80,16 +80,30 @@
                         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePage"
                             aria-expanded="true" aria-controls="collapsePage">
                             <i class="fas fa-fw fa-columns"></i>
-                            <span>Pages</span>
+                            <span>Category</span>
                         </a>
                         <div id="collapsePage" class="collapse" aria-labelledby="headingPage"
                             data-parent="#accordionSidebar">
                             <div class="bg-white py-2 collapse-inner rounded">
-                                <h6 class="collapse-header">Example Pages</h6>
-                                <a class="collapse-item" href="login.html">Login</a>
-                                <a class="collapse-item" href="register.html">Register</a>
-                                <a class="collapse-item" href="404.html">404 Page</a>
-                                <a class="collapse-item" href="blank.html">Blank Page</a>
+                                <router-link class="collapse-item" to="/store-category">Add Category</router-link>
+                                <router-link class="collapse-item" to="/category">All Category</router-link>
+
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#productPage"
+                            aria-expanded="true" aria-controls="productPage">
+                            <i class="fas fa-fw fa-columns"></i>
+                            <span>Product</span>
+                        </a>
+                        <div id="productPage" class="collapse" aria-labelledby="headingPage"
+                            data-parent="#accordionSidebar">
+                            <div class="bg-white py-2 collapse-inner rounded">
+                                <router-link class="collapse-item" to="/store-product">Add Product</router-link>
+                                <router-link class="collapse-item" to="/product">All Product</router-link>
+
                             </div>
                         </div>
                     </li>
