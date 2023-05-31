@@ -21,6 +21,11 @@ let storecategory=require('./components/category/Create.vue').default;
 let category=require('./components/category/Index.vue').default;
 let editcategory=require('./components/category/Edit.vue').default;
 
+//product Routes
+let storeproduct=require('./components/product/Create.vue').default;
+let product=require('./components/product/Index.vue').default;
+let editproduct=require('./components/product/Edit.vue').default;
+
 
 
 
@@ -44,5 +49,10 @@ export const routes = [
   //Category Route
   { path: '/store-category', component: storecategory , name:'store-category' },
   { path: '/category', component: category , name:'category' },
-  { path: '/edit-category/:id', component: editcategory , name:'edit-category' }
+  { path: '/edit-category/:id', component: editcategory , name:'edit-category' },
+
+  //Product Route
+  { path: '/store-product', component: storeproduct , name:'store-product' },
+  { path: '/product', component: product , name:'product' },
+  { path: '/edit-product/:id', component: editproduct , name:'edit-product' },
 ]
