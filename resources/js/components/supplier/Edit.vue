@@ -10,11 +10,11 @@
                             <div class="col-lg-12">
                                 <div class="login-form">
                                     <div class="py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">Employee Update</h6>
-                                    <router-link to="/employee" class="btn btn-success">All Employee </router-link>
+                                    <h6 class="m-0 font-weight-bold text-primary">Supplier Update</h6>
+                                    <router-link to="/supplier" class="btn btn-success">All Supplier </router-link>
                                     </div>
 
-                                    <form class="user" @submit.prevent="employeeUpdate" enctype="multipart/form-data">
+                                    <form class="user" @submit.prevent="supplierUpdate" enctype="multipart/form-data">
 
                                         <div class="form-group">
                                             <div class="form-row">
@@ -66,41 +66,14 @@
 
                                                     <input type="text" class="form-control"
                                                         id="exampleInputFirstName" placeholder="Enter Your Sallery"
-                                                        v-model="form.sallery">
-                                                    <small class="text-danger" v-if="errors.sallery">
-                                                        {{ errors . sallery[0] }} </small>
-
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <input type="text" class="form-control"
-                                                        id="exampleInputFirstName" placeholder="Enter Your Nid"
-                                                        v-model="form.nid">
-                                                    <small class="text-danger" v-if="errors.nid"> {{ errors . nid[0] }}
-                                                    </small>
-                                                </div>
-
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-
-                                            <div class="form-row">
-                                                <div class="col-md-6">
-                                                    <input type="date" class="form-control"
-                                                        id="exampleInputFirstName" placeholder="Enter Your Joining Date"
-                                                        v-model="form.joining_date">
-                                                    <small class="text-danger" v-if="errors.joining_date">
-                                                        {{ errors . joining_date[0] }} </small>
-
-                                                </div>
-
-
-                                                <div class="col-md-6">
+                                                        v-model="form.shopname">
+                                                    <small class="text-danger" v-if="errors.shopname">
+                                                        {{ errors . shopname[0] }} </small>
 
                                                 </div>
 
                                             </div>
                                         </div>
-
 
                                         <div class="form-group">
 
@@ -122,22 +95,13 @@
 
                                             </div>
                                         </div>
-
-
-
-
                                         <div class="form-group">
                                             <button type="submit" class="btn btn-primary btn-block">Update</button>
                                         </div>
 
                                     </form>
-                                    <hr>
-                                    <div class="text-center">
 
 
-                                    </div>
-                                    <div class="text-center">
-                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -169,9 +133,7 @@
                     email: '',
                     address: '',
                     phone: '',
-                    sallery: '',
-                    nid: '',
-                    joining_date: '',
+                    shopname: '',
                     photo: '',
                     newphoto: '',
                 },
@@ -181,7 +143,7 @@
 
         created(){
            let id =this.$route.params.id
-           axios.get('/api/employee/'+id)
+           axios.get('/api/supplier/'+id)
            .then(({data})=>(this.form=data))
             .catch(console.log('error'))
         },
@@ -201,11 +163,11 @@
                 }
 
             },
-            employeeUpdate(){
+            supplierUpdate(){
                 let id = this.$route.params.id
-                axios.patch('/api/employee/'+id,this.form)
+                axios.patch('/api/supplier/'+id,this.form)
                 .then(() => {
-                    this.$router.push({ name: 'employee'})
+                    this.$router.push({ name: 'supplier'})
                     Notification.success()
                 })
                 .catch(error =>this.errors = error.response.data.errors)

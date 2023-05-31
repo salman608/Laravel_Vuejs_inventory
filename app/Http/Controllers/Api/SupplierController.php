@@ -3,12 +3,12 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Models\Employee;
+use App\Models\Supplier;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Intervention\Image\Facades\Image;
 
-class EmployeeController extends Controller
+class SupplierController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,8 +17,8 @@ class EmployeeController extends Controller
      */
     public function index()
     {
-        $employee = Employee::all();
-        return response()->json($employee);
+        $suppliers = Supplier::all();
+        return response()->json($suppliers);
     }
 
     /**
@@ -26,10 +26,21 @@ class EmployeeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function create()
+    {
+        //
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
     public function store(Request $request)
     {
         $validateData = $request->validate([
-            'name' => 'required|unique:employees|max:255',
+            'name' => 'required|max:255',
             'email' => 'required',
             'phone' => 'required|unique:employees',
 
@@ -42,43 +53,28 @@ class EmployeeController extends Controller
 
             $name = time() . "." . $ext;
             $img = Image::make($request->photo)->resize(240, 200);
-            $upload_path = 'backend/employee/';
+            $upload_path = 'backend/supplier/';
             $image_url = $upload_path . $name;
             $img->save($image_url);
 
-            $employee = new Employee();
-            $employee->name = $request->name;
-            $employee->email = $request->email;
-            $employee->phone = $request->phone;
-            $employee->sallery = $request->sallery;
-            $employee->address = $request->address;
-            $employee->nid = $request->nid;
-            $employee->joining_date = $request->joining_date;
-            $employee->photo = $image_url;
-            $employee->save();
+            $supplier = new Supplier();
+            $supplier->name = $request->name;
+            $supplier->email = $request->email;
+            $supplier->phone = $request->phone;
+            $supplier->shopname = $request->shopname;
+            $supplier->address = $request->address;
+            $supplier->photo = $image_url;
+            $supplier->save();
         } else {
-            $employee = new Employee();
-            $employee->name = $request->name;
-            $employee->email = $request->email;
-            $employee->phone = $request->phone;
-            $employee->sallery = $request->sallery;
-            $employee->address = $request->address;
-            $employee->nid = $request->nid;
-            $employee->joining_date = $request->joining_date;
+            $supplier = new Supplier();
+            $supplier->name = $request->name;
+            $supplier->email = $request->email;
+            $supplier->phone = $request->phone;
+            $supplier->shopname = $request->shopname;
+            $supplier->address = $request->address;
 
-            $employee->save();
+            $supplier->save();
         }
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
     }
 
     /**
@@ -89,8 +85,8 @@ class EmployeeController extends Controller
      */
     public function show($id)
     {
-        $employee = DB::table('employees')->where('id', $id)->first();
-        return response()->json($employee);
+        $supplier = DB::table('suppliers')->where('id', $id)->first();
+        return response()->json($supplier);
     }
 
     /**
@@ -117,10 +113,8 @@ class EmployeeController extends Controller
         $data['name'] = $request->name;
         $data['email'] = $request->email;
         $data['phone'] = $request->phone;
-        $data['sallery'] = $request->sallery;
+        $data['shopname'] = $request->shopname;
         $data['address'] = $request->address;
-        $data['nid'] = $request->nid;
-        $data['joining_date'] = $request->joining_date;
 
         $image = $request->newphoto;
 
@@ -131,21 +125,21 @@ class EmployeeController extends Controller
 
             $name = time() . "." . $ext;
             $img = Image::make($image)->resize(240, 200);
-            $upload_path = 'backend/employee/';
+            $upload_path = 'backend/supplier/';
             $image_url = $upload_path . $name;
             $success = $img->save($image_url);
 
             if ($success) {
                 $data['photo'] = $image_url;
-                $img = DB::table('employees')->where('id', $id)->first();
+                $img = DB::table('suppliers')->where('id', $id)->first();
                 $image_path = $img->photo;
                 unlink($image_path);
-                $user = DB::table('employees')->where('id', $id)->update($data);
+                $user = DB::table('suppliers')->where('id', $id)->update($data);
             }
         } else {
             $oldphoto = $request->photo;
             $data['photo'] = $oldphoto;
-            DB::table('employees')->where('id', $id)->update($data);
+            DB::table('suppliers')->where('id', $id)->update($data);
         }
     }
 
@@ -157,13 +151,13 @@ class EmployeeController extends Controller
      */
     public function destroy($id)
     {
-        $employee = DB::table('employees')->where('id', $id)->first();
-        $photo = $employee->photo;
+        $supplier = DB::table('suppliers')->where('id', $id)->first();
+        $photo = $supplier->photo;
         if ($photo) {
             unlink($photo);
-            DB::table('employees')->where('id', $id)->delete();
+            DB::table('suppliers')->where('id', $id)->delete();
         } else {
-            DB::table('employees')->where('id', $id)->delete();
+            DB::table('suppliers')->where('id', $id)->delete();
         }
     }
 }

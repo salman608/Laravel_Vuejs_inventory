@@ -11,6 +11,13 @@ let storeemployee=require('./components/employee/Create.vue').default;
 let employee=require('./components/employee/Index.vue').default;
 let editemployee=require('./components/employee/Edit.vue').default;
 
+//Supplier Routes
+let storesupplier=require('./components/supplier/Create.vue').default;
+let supplier=require('./components/supplier/Index.vue').default;
+let editsupplier=require('./components/supplier/Edit.vue').default;
+
+
+
 export const routes = [
   { path: '/', component: Login, name:'/' },
   { path: '/register', component: Register , name:'/register' },
@@ -21,5 +28,10 @@ export const routes = [
   //Employee Route
   { path: '/store-employee', component: storeemployee , name:'store-employee' },
   { path: '/employee', component: employee , name:'employee' },
-  { path: '/edit-employee/:id', component: editemployee , name:'edit-employee' }
+  { path: '/edit-employee/:id', component: editemployee , name:'edit-employee' },
+
+  //Supplier Route
+  { path: '/store-supplier', component: storesupplier , name:'store-supplier' },
+  { path: '/supplier', component: supplier , name:'supplier' },
+  { path: '/edit-supplier/:id', component: editsupplier , name:'edit-supplier' }
 ]
