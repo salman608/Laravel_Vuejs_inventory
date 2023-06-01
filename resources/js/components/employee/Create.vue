@@ -1,9 +1,6 @@
 <template>
 
     <div>
-
-
-
         <div class="row justify-content-center">
             <div class="col-xl-12 col-lg-12 col-md-12">
                 <div class="card shadow-sm my-1 ">
