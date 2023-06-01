@@ -123,6 +123,23 @@
                             </div>
                         </div>
                     </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link collapsed" href="#" data-toggle="collapse"
+                            data-target="#salaryPage" aria-expanded="true" aria-controls="salaryPage">
+                            <i class="fas fa-fw fa-columns"></i>
+                            <span>Salary</span>
+                        </a>
+                        <div id="salaryPage" class="collapse" aria-labelledby="headingPage"
+                            data-parent="#accordionSidebar">
+                            <div class="bg-white py-2 collapse-inner rounded">
+                                <router-link class="collapse-item" to="/given-salary">Add Salary</router-link>
+                                <router-link class="collapse-item" to="/salary">All Salary</router-link>
+
+                            </div>
+                        </div>
+                    </li>
+
                     <li class="nav-item">
                         <a class="nav-link" href="charts.html">
                             <i class="fas fa-fw fa-chart-area"></i>
