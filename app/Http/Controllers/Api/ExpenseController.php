@@ -49,19 +49,11 @@ class ExpenseController extends Controller
      */
     public function show($id)
     {
-        //
+        $exoense = DB::table('expenses')->where('id', $id)->first();
+        return response()->json($exoense);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
+
 
     /**
      * Update the specified resource in storage.
@@ -72,7 +64,11 @@ class ExpenseController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = array();
+        $data['details'] = $request->details;
+        $data['amount'] = $request->amount;
+        $data['expense_date'] = $request->expense_date;
+        DB::table('expenses')->where('id', $id)->update($data);
     }
 
     /**
