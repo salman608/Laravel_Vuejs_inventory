@@ -115,8 +115,8 @@
                                                     <label for="exampleInputQuantity">Product Quantity</label>
                                                     <input type="text" class="form-control"
                                                         id="exampleInputQuantity" placeholder="Enter Product Quantity"
-                                                        v-model="form.product_quntity">
-                                                    <small class="text-danger" v-if="errors.product_quntity"> {{ errors . product_quntity[0] }}
+                                                        v-model="form.product_quantity">
+                                                    <small class="text-danger" v-if="errors.product_quantity"> {{ errors . product_quantity[0] }}
                                                     </small>
                                                 </div>
 
