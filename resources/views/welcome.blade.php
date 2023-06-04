@@ -381,10 +381,7 @@
                 <footer class="sticky-footer bg-white">
                     <div class="container my-auto">
                         <div class="copyright text-center my-auto">
-                            <span>copyright ©
-                                <script>
-                                    document.write(new Date().getFullYear());
-                                </script>2023 - developed by
+                            <span>copyright ©2023 - developed by
                                 <b><a href="#" target="_blank">Salman</a></b>
                             </span>
                         </div>

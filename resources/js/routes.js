@@ -34,6 +34,9 @@ let editexpense=require('./components/expense/Edit.vue').default;
 //Salary Routes
 let salary=require('./components/salary/all_employee.vue').default;
 let paysalary=require('./components/salary/Create.vue').default;
+let allsalary=require('./components/salary/Index.vue').default;
+let viewsalary=require('./components/salary/View.vue').default;
+let Editsalary=require('./components/salary/Edit.vue').default;
 
 
 
@@ -74,4 +77,7 @@ export const routes = [
    //Salary Route
    { path: '/given-salary', component: salary , name:'given-salary' },
    { path: '/pay-salary/:id', component: paysalary , name:'pay-salary' },
+   { path: '/salary', component: allsalary , name:'salary' },
+   { path: '/view-salary/:id', component: viewsalary , name:'view-salary' },
+   { path: '/edit-salary/:id', component: Editsalary , name:'edit-salary' },
 ]
