@@ -42,7 +42,10 @@ let Editsalary=require('./components/salary/Edit.vue').default;
 let stock=require('./components/product/Stock.vue').default;
 let editstock=require('./components/product/edit-stock.vue').default;
 
-
+//Customer Routes
+let storecustomer=require('./components/customer/Create.vue').default;
+let customer=require('./components/customer/Index.vue').default;
+let editcustomer=require('./components/customer/Edit.vue').default;
 
 
 
@@ -90,5 +93,10 @@ export const routes = [
    { path: '/edit-stock/:id', component: editstock , name:'edit-stock' },
 //    { path: '/expense', component: expense , name:'expense' },
 //    { path: '/edit-expense/:id', component: editexpense , name:'edit-expense' },
+
+    //Customer Route
+    { path: '/store-customer', component: storecustomer , name:'store-customer' },
+    { path: '/customer', component: customer , name:'customer' },
+    { path: '/edit-customer/:id', component: editcustomer , name:'edit-customer' },
 
 ]

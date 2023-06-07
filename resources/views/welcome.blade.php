@@ -35,7 +35,14 @@
                             <span>Dashboard</span>
                         </router-link>
                     </li>
+                    <li class="nav-item bg-info">
+                        <router-link class="nav-link" to="/home">
+                            <i class="fas fa-fw fa-tachometer-alt"></i>
+                            <span>POS</span>
+                        </router-link>
+                    </li>
                     <hr class="sidebar-divider">
+
                     <div class="sidebar-heading">
                         Features
                     </div>
@@ -93,8 +100,8 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#productPage"
-                            aria-expanded="true" aria-controls="productPage">
+                        <a class="nav-link collapsed" href="#" data-toggle="collapse"
+                            data-target="#productPage" aria-expanded="true" aria-controls="productPage">
                             <i class="fas fa-fw fa-columns"></i>
                             <span>Product</span>
                         </a>
@@ -126,6 +133,22 @@
 
                     <li class="nav-item">
                         <a class="nav-link collapsed" href="#" data-toggle="collapse"
+                            data-target="#customerPage" aria-expanded="true" aria-controls="customerPage">
+                            <i class="fas fa-fw fa-columns"></i>
+                            <span>Customer</span>
+                        </a>
+                        <div id="customerPage" class="collapse" aria-labelledby="headingPage"
+                            data-parent="#accordionSidebar">
+                            <div class="bg-white py-2 collapse-inner rounded">
+                                <router-link class="collapse-item" to="/store-customer">Add Customer</router-link>
+                                <router-link class="collapse-item" to="/customer">All Customer</router-link>
+
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link collapsed" href="#" data-toggle="collapse"
                             data-target="#salaryPage" aria-expanded="true" aria-controls="salaryPage">
                             <i class="fas fa-fw fa-columns"></i>
                             <span>Salary</span>
@@ -146,7 +169,21 @@
                             <span>Stock</span>
                         </router-link>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link collapsed" href="#" data-toggle="collapse"
+                            data-target="#salaryPage" aria-expanded="true" aria-controls="reportPage">
+                            <i class="fas fa-fw fa-chart-area"></i>
+                            <span>Reports</span>
+                        </a>
+                        <div id="reportPage" class="collapse" aria-labelledby="headingPage"
+                            data-parent="#accordionSidebar">
+                            <div class="bg-white py-2 collapse-inner rounded">
+                                <router-link class="collapse-item" to="">Report One</router-link>
+                                <router-link class="collapse-item" to="">Report Two</router-link>
 
+                            </div>
+                        </div>
+                    </li>
 
 
 
