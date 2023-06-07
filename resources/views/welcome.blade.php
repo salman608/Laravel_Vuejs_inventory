@@ -141,11 +141,18 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="charts.html">
-                            <i class="fas fa-fw fa-chart-area"></i>
-                            <span>Charts</span>
-                        </a>
+                        <router-link class="nav-link" to="/stock">
+                            <i class="fab fa-fw fa-wpforms"></i>
+                            <span>Stock</span>
+                        </router-link>
                     </li>
+
+
+
+
+
+
+
                     <hr class="sidebar-divider">
                     <div class="version" id="version-ruangadmin"></div>
                 </ul>
