@@ -7852,7 +7852,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   created: function created() {
@@ -7865,6 +7864,7 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     this.allProduct();
     this.allCategory();
+    this.allCustomer();
   },
   data: function data() {
     return {
@@ -7872,7 +7872,9 @@ __webpack_require__.r(__webpack_exports__);
       categories: '',
       getproducts: [],
       searchTerm: '',
-      getSearchTerm: ''
+      getSearchTerm: '',
+      customers: '',
+      errors: ''
     };
   },
   computed: {
@@ -7904,11 +7906,18 @@ __webpack_require__.r(__webpack_exports__);
         return _this4.categories = data;
       })["catch"]();
     },
-    subProduct: function subProduct(id) {
+    allCustomer: function allCustomer() {
       var _this5 = this;
-      axios.get('/api/getting/product/' + id).then(function (_ref3) {
+      axios.get('/api/customer/').then(function (_ref3) {
         var data = _ref3.data;
-        return _this5.getproducts = data;
+        return _this5.customers = data;
+      })["catch"](console.log('error'));
+    },
+    subProduct: function subProduct(id) {
+      var _this6 = this;
+      axios.get('/api/getting/product/' + id).then(function (_ref4) {
+        var data = _ref4.data;
+        return _this6.getproducts = data;
       })["catch"]();
     }
   }
@@ -48023,19 +48032,14 @@ var render = function () {
                         },
                       },
                     },
-                    [
-                      _c("option", { attrs: { value: "" } }, [
-                        _vm._v("salman"),
-                      ]),
-                      _vm._v(" "),
-                      _c("option", { attrs: { value: "" } }, [
-                        _vm._v("salman"),
-                      ]),
-                      _vm._v(" "),
-                      _c("option", { attrs: { value: "" } }, [
-                        _vm._v("salman"),
-                      ]),
-                    ]
+                    _vm._l(_vm.customers, function (customer) {
+                      return _c(
+                        "option",
+                        { key: customer.id, attrs: { value: "" } },
+                        [_vm._v(_vm._s(customer.customer_name))]
+                      )
+                    }),
+                    0
                   ),
                   _vm._v(" "),
                   _c("label", { attrs: { for: "" } }, [_vm._v("Pay Amount")]),
