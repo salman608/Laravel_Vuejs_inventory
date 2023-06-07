@@ -48,6 +48,9 @@ let customer=require('./components/customer/Index.vue').default;
 let editcustomer=require('./components/customer/Edit.vue').default;
 
 
+let pos=require('./components/pos/pointofsale.vue').default;
+
+
 
 export const routes = [
   { path: '/', component: Login, name:'/' },
@@ -91,12 +94,14 @@ export const routes = [
    //Stock Route
    { path: '/stock', component: stock , name:'stock' },
    { path: '/edit-stock/:id', component: editstock , name:'edit-stock' },
-//    { path: '/expense', component: expense , name:'expense' },
-//    { path: '/edit-expense/:id', component: editexpense , name:'edit-expense' },
+
 
     //Customer Route
     { path: '/store-customer', component: storecustomer , name:'store-customer' },
     { path: '/customer', component: customer , name:'customer' },
     { path: '/edit-customer/:id', component: editcustomer , name:'edit-customer' },
+
+    //Pos layout
+    { path: '/pos', component: pos , name:'pos' },
 
 ]

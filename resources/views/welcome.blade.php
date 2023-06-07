@@ -9,7 +9,7 @@
     <meta name="author" content="">
     <link href="img/logo/logo.png" rel="icon">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-    <title>RuangAdmin - Dashboard</title>
+    <title>Easy Pos - Dashboard</title>
     <link href="{{ asset('backend/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ asset('backend/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ asset('backend/css/ruang-admin.min.css') }}" rel="stylesheet">
@@ -26,7 +26,7 @@
                         <div class="sidebar-brand-icon">
                             <img src="{{ asset('backend/img/logo/logo2.png') }}">
                         </div>
-                        <div class="sidebar-brand-text mx-3">RuangAdmin</div>
+                        <div class="sidebar-brand-text mx-3">Easy POS</div>
                     </a>
                     <hr class="sidebar-divider my-0">
                     <li class="nav-item active">
@@ -36,7 +36,7 @@
                         </router-link>
                     </li>
                     <li class="nav-item bg-info">
-                        <router-link class="nav-link" to="/home">
+                        <router-link class="nav-link" to="/pos">
                             <i class="fas fa-fw fa-tachometer-alt"></i>
                             <span>POS</span>
                         </router-link>

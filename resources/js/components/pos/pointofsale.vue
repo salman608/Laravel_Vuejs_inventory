@@ -1,0 +1,186 @@
+<template>
+<div>
+    <div class="container-fluid" id="container-wrapper">
+        <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h1 class="h3 mb-0 text-gray-800">POS Dashboard</h1>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="./">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">POS</li>
+            </ol>
+        </div>
+
+        <div class="row mb-3">
+
+            <!-- Area Chart -->
+            <div class="col-xl-5 col-lg-5">
+                <div class="card mb-4">
+                    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                        <h6 class="m-0 font-weight-bold text-primary">Monthly Recap Report </h6>
+
+                    </div>
+                    <div class="card-body">
+                        <div class="chart-area">
+                            fghgdjdghjgj
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Pie Chart -->
+            <div class="col-xl-7 col-lg-7">
+                <div class="card mb-4">
+                    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                        <h6 class="m-0 font-weight-bold text-primary">Products Sold</h6>
+                        <input type="text" v-model="searchTerm" class="form-control w-50" placeholder="Search Here....">
+                    </div>
+
+                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">All Product</button>
+                        </li>
+                        <li class="nav-item" role="presentation" v-for="category in categories" :key="category.id">
+                            <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile"
+                             aria-selected="false" @click="subProduct(category.id)">{{ category.category_name }}</button>
+                        </li>
+
+                    </ul>
+                    <div class="tab-content" id="myTabContent">
+                        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                             <!-- Start all product tabs -->
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="cl-lg-3 col-md-3 col-sm-6 col-6" v-for="product in filtersearch" :key="product.id">
+                                        <a href="">
+                                            <div class="card mb-2" style="width:8.5rem">
+                                                <img :src="product.product_image" alt="" id="em_photo" class="card-img-top">
+                                                <div class="card-body">
+                                                    <h6 class="">{{ product.product_name }}</h6>
+                                                    <td v-if="product.product_quantity >= 1">
+                                                        <span class="badge badge-success">Available {{ product.product_quantity }}</span>
+                                                    </td>
+                                                    <td v-else>
+                                                        <span class="badge badge-warning">Stock Out </span>
+                                                    </td>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- End all product tabs -->
+                        <div class="tab-pane fade mt-2" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                            <div class="row">
+                                 <input type="text" v-model="getSearchTerm" class="form-control catSearch" placeholder="Search Here....">
+                                    <div class="cl-lg-3 col-md-3 col-sm-6 col-6" v-for="getproduct in getfiltersearch" :key="getproduct.id">
+                                        <a href="">
+                                            <div class="card mt-2 mb-2 " style="width:8.5rem">
+                                                <img :src="getproduct.product_image" alt="" id="em_photo" class="card-img-top">
+                                                <div class="card-body">
+                                                    <h6 class="">{{ getproduct.product_name }}</h6>
+                                                    <td v-if="getproduct.product_quantity >= 1">
+                                                        <span class="badge badge-success">Available {{ getproduct.product_quantity }}</span>
+                                                    </td>
+                                                    <td v-else>
+                                                        <span class="badge badge-warning">Stock Out </span>
+                                                    </td>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+        <!--Row-->
+
+    </div>
+
+</div>
+</template>
+
+<script>
+export default {
+    created() {
+        if (!User.loggedIn()) {
+            this.$router.push({
+                name: '/'
+            })
+        }
+    },
+
+    mounted() {
+        this.allProduct();
+        this.allCategory();
+    },
+
+    data() {
+        return {
+            products: [],
+            categories: '',
+            getproducts:[],
+            searchTerm: '',
+            getSearchTerm: '',
+        }
+    },
+
+    computed: {
+        filtersearch() {
+            return this.products.filter(product => {
+                return product.product_name.match(this.searchTerm)
+
+            })
+        },
+        getfiltersearch(){
+            return this.getproducts.filter(getproduct => {
+                return getproduct.product_name.match(this.getSearchTerm)
+
+            })
+        },
+    },
+
+    methods: {
+        allProduct() {
+            axios.get('/api/product/')
+                .then(({
+                    data
+                }) => (this.products = data))
+                .catch()
+        },
+
+        allCategory() {
+            axios.get('/api/category/')
+                .then(({
+                    data
+                }) => (this.categories = data))
+                .catch()
+        },
+
+        subProduct(id) {
+            axios.get('/api/getting/product/'+id)
+                .then(({
+                    data
+                }) => (this.getproducts = data))
+                .catch()
+        },
+    },
+
+}
+</script>
+
+<style scoped>
+#em_photo {
+    height: 90px;
+    width: 135px;
+}
+
+.catSearch{
+    width: 95%;
+    margin: auto;
+
+}
+</style>
