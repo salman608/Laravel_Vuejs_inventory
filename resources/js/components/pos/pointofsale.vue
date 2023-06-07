@@ -15,14 +15,76 @@
             <div class="col-xl-5 col-lg-5">
                 <div class="card mb-4">
                     <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                        <h6 class="m-0 font-weight-bold text-primary">Monthly Recap Report </h6>
+                        <h6 class="m-0 font-weight-bold text-primary">Expense Insert </h6>
+                        <a class="btn btn-sm btn-info text-white">Add Customer</a>
+                    </div>
 
+                    <div class="table-responsive">
+                        <table class="table align-items-center table-flush" style="font-size:12px;">
+                            <thead class="thead-light">
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Qty</th>
+                                    <th>Unit</th>
+                                    <th>Total</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><a href="#">Name</a></td>
+                                    <td>Qty</td>
+                                    <td>Unit</td>
+                                    <td>Total</td>
+                                    <td><a href="#" class="btn btn-sm btn-primary">X</a></td>
+                                </tr>
+
+                            </tbody>
+                        </table>
                     </div>
-                    <div class="card-body">
-                        <div class="chart-area">
-                            fghgdjdghjgj
-                        </div>
+                    <div class="card-footer">
+                        <ul class="list-group">
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                Total Quantity: <strong>100</strong>
+                            </li>
+
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                Sub Total: <strong>$100</strong>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                Vat: <strong>100%</strong>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                Total Amount: <strong>$100</strong>
+                            </li>
+                        </ul>
+                        <br>
+
+                        <form>
+                            <label for="">Customer Name</label>
+                            <select class="form-control" v-model="customer_id">
+                                <option value="">salman</option>
+                                <option value="">salman</option>
+                                <option value="">salman</option>
+                            </select>
+
+                            <label for="">Pay Amount</label>
+                            <input type="text" class="form-control" v-model="pay">
+
+                            <label for="">Due Amount</label>
+                            <input type="text" class="form-control" v-model="due">
+
+                            <label for="">Pay By</label>
+                            <select class="form-control" v-model="customer_id">
+                                <option value="HandCash">HandCash</option>
+                                <option value="Cheaqe">Cheaqe</option>
+                                <option value="GiftCard">GiftCard</option>
+                            </select>
+                            <br>
+                            <button type="submit" class="btn btn-success ">Submit</button>
+                        </form>
                     </div>
+
                 </div>
             </div>
             <!-- Pie Chart -->
@@ -38,14 +100,13 @@
                             <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">All Product</button>
                         </li>
                         <li class="nav-item" role="presentation" v-for="category in categories" :key="category.id">
-                            <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile"
-                             aria-selected="false" @click="subProduct(category.id)">{{ category.category_name }}</button>
+                            <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false" @click="subProduct(category.id)">{{ category.category_name }}</button>
                         </li>
 
                     </ul>
                     <div class="tab-content" id="myTabContent">
                         <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                             <!-- Start all product tabs -->
+                            <!-- Start all product tabs -->
                             <div class="card-body">
                                 <div class="row">
                                     <div class="cl-lg-3 col-md-3 col-sm-6 col-6" v-for="product in filtersearch" :key="product.id">
@@ -70,24 +131,24 @@
                         <!-- End all product tabs -->
                         <div class="tab-pane fade mt-2" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                             <div class="row">
-                                 <input type="text" v-model="getSearchTerm" class="form-control catSearch" placeholder="Search Here....">
-                                    <div class="cl-lg-3 col-md-3 col-sm-6 col-6" v-for="getproduct in getfiltersearch" :key="getproduct.id">
-                                        <a href="">
-                                            <div class="card mt-2 mb-2 " style="width:8.5rem">
-                                                <img :src="getproduct.product_image" alt="" id="em_photo" class="card-img-top">
-                                                <div class="card-body">
-                                                    <h6 class="">{{ getproduct.product_name }}</h6>
-                                                    <td v-if="getproduct.product_quantity >= 1">
-                                                        <span class="badge badge-success">Available {{ getproduct.product_quantity }}</span>
-                                                    </td>
-                                                    <td v-else>
-                                                        <span class="badge badge-warning">Stock Out </span>
-                                                    </td>
-                                                </div>
+                                <input type="text" v-model="getSearchTerm" class="form-control catSearch" placeholder="Search Here....">
+                                <div class="cl-lg-3 col-md-3 col-sm-6 col-6" v-for="getproduct in getfiltersearch" :key="getproduct.id">
+                                    <a href="">
+                                        <div class="card mt-2 mb-2 " style="width:8.5rem">
+                                            <img :src="getproduct.product_image" alt="" id="em_photo" class="card-img-top">
+                                            <div class="card-body">
+                                                <h6 class="">{{ getproduct.product_name }}</h6>
+                                                <td v-if="getproduct.product_quantity >= 1">
+                                                    <span class="badge badge-success">Available {{ getproduct.product_quantity }}</span>
+                                                </td>
+                                                <td v-else>
+                                                    <span class="badge badge-warning">Stock Out </span>
+                                                </td>
                                             </div>
-                                        </a>
-                                    </div>
+                                        </div>
+                                    </a>
                                 </div>
+                            </div>
                         </div>
 
                     </div>
@@ -122,7 +183,7 @@ export default {
         return {
             products: [],
             categories: '',
-            getproducts:[],
+            getproducts: [],
             searchTerm: '',
             getSearchTerm: '',
         }
@@ -135,7 +196,7 @@ export default {
 
             })
         },
-        getfiltersearch(){
+        getfiltersearch() {
             return this.getproducts.filter(getproduct => {
                 return getproduct.product_name.match(this.getSearchTerm)
 
@@ -161,7 +222,7 @@ export default {
         },
 
         subProduct(id) {
-            axios.get('/api/getting/product/'+id)
+            axios.get('/api/getting/product/' + id)
                 .then(({
                     data
                 }) => (this.getproducts = data))
@@ -178,7 +239,7 @@ export default {
     width: 135px;
 }
 
-.catSearch{
+.catSearch {
     width: 95%;
     margin: auto;
 
