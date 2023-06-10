@@ -60,3 +60,5 @@ Route::Get('/addToCart/{id}', [CartController::class, 'AddToCart']);
 Route::Get('/cart/product', [CartController::class, 'CartProduct']);
 
 Route::Get('/remove/cart/{id}', [CartController::class, 'removeCart']);
+Route::Get('/increment/{id}', [CartController::class, 'Increment']);
+Route::Get('/decrement/{id}', [CartController::class, 'Decrement']);

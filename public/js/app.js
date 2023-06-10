@@ -7921,6 +7921,18 @@ __webpack_require__.r(__webpack_exports__);
         Notification.cart_delete();
       })["catch"]();
     },
+    increment: function increment(id) {
+      axios.get('/api/increment/' + id).then(function () {
+        Reload.$emit('AfterAdd');
+        Notification.success();
+      })["catch"]();
+    },
+    decrement: function decrement(id) {
+      axios.get('/api/decrement/' + id).then(function () {
+        Reload.$emit('AfterAdd');
+        Notification.success();
+      })["catch"]();
+    },
     allProduct: function allProduct() {
       var _this5 = this;
       axios.get('/api/product/').then(function (_ref2) {
@@ -15853,7 +15865,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n#em_photo[data-v-e7fc9010] {\n    height: 90px;\n    width: 135px;\n}\n.catSearch[data-v-e7fc9010] {\n    width: 95%;\n    margin: auto;\n}\n\n\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n#em_photo[data-v-e7fc9010] {\n    height: 90px;\n    width: 135px;\n}\n.catSearch[data-v-e7fc9010] {\n    width: 95%;\n    margin: auto;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -48067,14 +48079,30 @@ var render = function () {
                             _vm._v(" "),
                             _c(
                               "button",
-                              { staticClass: "btn btn-sm btn-success" },
+                              {
+                                staticClass: "btn btn-sm btn-success",
+                                on: {
+                                  click: function ($event) {
+                                    $event.preventDefault()
+                                    return _vm.increment(cart.id)
+                                  },
+                                },
+                              },
                               [_vm._v("+")]
                             ),
                             _vm._v(" "),
                             _c(
                               "button",
-                              { staticClass: "btn btn-sm btn-danger" },
-                              [_vm._v("1")]
+                              {
+                                staticClass: "btn btn-sm btn-danger",
+                                on: {
+                                  click: function ($event) {
+                                    $event.preventDefault()
+                                    return _vm.decrement(cart.id)
+                                  },
+                                },
+                              },
+                              [_vm._v("-")]
                             ),
                           ]),
                           _vm._v(" "),
