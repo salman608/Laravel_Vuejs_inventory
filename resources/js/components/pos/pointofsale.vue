@@ -35,11 +35,12 @@
                                     <td>{{ cart.pro_name }}</td>
                                     <td class="qty"><input type="text" readonly :value="cart.pro_quantity" style="width:15px">
                                         <button @click.prevent="increment(cart.id)" class="btn btn-sm btn-success">+</button>
-                                        <button @click.prevent="decrement(cart.id)" class="btn btn-sm btn-danger">-</button>
+                                        <button @click.prevent="decrement(cart.id)" class="btn btn-sm btn-danger" v-if="cart.pro_quantity>=2">-</button>
+                                        <button v-else class="btn btn-sm btn-danger" disabled>-</button>
                                     </td>
                                     <td>{{ cart.product_price }}</td>
                                     <td>{{ cart.sub_total }}</td>
-                                    <td><a @click="removeItem(cart.id)" class="btn btn-sm btn-primary">X</a></td>
+                                    <td><a @click="removeItem(cart.id)" class="btn btn-sm btn-primary text-white">X</a></td>
                                 </tr>
 
                             </tbody>
@@ -48,17 +49,17 @@
                     <div class="card-footer">
                         <ul class="list-group">
                             <li class="list-group-item d-flex justify-content-between align-items-center">
-                                Total Quantity: <strong>100</strong>
+                                Total Quantity: <strong>{{ qty }}</strong>
                             </li>
 
                             <li class="list-group-item d-flex justify-content-between align-items-center">
-                                Sub Total: <strong>$100</strong>
+                                Sub Total: <strong>{{ subtotal }} $</strong>
                             </li>
                             <li class="list-group-item d-flex justify-content-between align-items-center">
-                                Vat: <strong>100%</strong>
+                                Vat: <strong>{{ vats.vat }} %</strong>
                             </li>
                             <li class="list-group-item d-flex justify-content-between align-items-center">
-                                Total Amount: <strong>$100</strong>
+                                Total Amount: <strong>{{ subtotal*vats.vat /100 + subtotal }} $</strong>
                             </li>
                         </ul>
                         <br>
@@ -135,7 +136,7 @@
                             <div class="row">
                                 <input type="text" v-model="getSearchTerm" class="form-control catSearch" placeholder="Search Here....">
                                 <div class="cl-lg-3 col-md-3 col-sm-6 col-6" v-for="getproduct in getfiltersearch" :key="getproduct.id">
-                                    <button class="btn btn-sm" @click.prevent="AddToCart(product.id)">
+                                    <button class="btn btn-sm" @click.prevent="AddToCart(getproduct.id)">
                                         <div class="card mt-2 mb-2 " style="width:8.5rem">
                                             <img :src="getproduct.product_image" alt="" id="em_photo" class="card-img-top">
                                             <div class="card-body">
@@ -181,6 +182,7 @@ export default {
         this.allCategory();
         this.allCustomer();
         this.cartProduct();
+        this.vat();
         Reload.$on('AfterAdd', () => {
             this.cartProduct();
         })
@@ -196,6 +198,7 @@ export default {
             customers: '',
             errors: '',
             carts: [],
+            vats: [],
         }
     },
 
@@ -211,6 +214,21 @@ export default {
                 return getproduct.product_name.match(this.getSearchTerm)
 
             })
+        },
+
+        qty() {
+            let sum = 0;
+            for (let i = 0; i < this.carts.length; i++) {
+                sum += (parseFloat(this.carts[i].pro_quantity));
+            }
+            return sum;
+        },
+        subtotal(){
+            let sum = 0;
+            for (let i = 0; i < this.carts.length; i++) {
+                sum += (parseFloat(this.carts[i].pro_quantity)* parseFloat(this.carts[i].product_price));
+            }
+            return sum;
         },
     },
 
@@ -254,6 +272,13 @@ export default {
                     Reload.$emit('AfterAdd');
                     Notification.success()
                 })
+                .catch()
+        },
+        vat() {
+            axios.get('/api/vats/')
+                .then(({
+                    data
+                }) => (this.vats = data))
                 .catch()
         },
         allProduct() {
