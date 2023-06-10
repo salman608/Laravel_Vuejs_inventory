@@ -52,6 +52,14 @@ class Notification{
         timeout:1000,
         }).show();
    }
+   cart_delete(){
+    new Noty({
+        type:'error',
+        layout:'topRight',
+        text: 'Product successfully deleted!',
+        timeout:1000,
+        }).show();
+   }
 
 
    }

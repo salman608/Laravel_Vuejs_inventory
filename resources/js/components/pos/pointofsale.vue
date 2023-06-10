@@ -31,12 +31,15 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td><a href="#">Name</a></td>
-                                    <td>Qty</td>
-                                    <td>Unit</td>
-                                    <td>Total</td>
-                                    <td><a href="#" class="btn btn-sm btn-primary">X</a></td>
+                                <tr v-for="cart in carts" :key="cart.id" class="mr-5">
+                                    <td>{{ cart.pro_name }}</td>
+                                    <td class="qty"><input type="text" readonly :value="cart.pro_quantity" style="width:15px">
+                                    <button class="btn btn-sm btn-success">+</button>
+                                    <button class="btn btn-sm btn-danger">1</button>
+                                    </td>
+                                    <td>{{ cart.product_price }}</td>
+                                    <td>{{ cart.sub_total }}</td>
+                                    <td><a @click="removeItem(cart.id)" class="btn btn-sm btn-primary">X</a></td>
                                 </tr>
 
                             </tbody>
@@ -177,6 +180,10 @@ export default {
         this.allProduct();
         this.allCategory();
         this.allCustomer();
+        this.cartProduct();
+        Reload.$on('AfterAdd',()=>{
+            this.cartProduct();
+        })
     },
 
     data() {
@@ -188,6 +195,7 @@ export default {
             getSearchTerm: '',
             customers: '',
             errors: '',
+            carts: [],
         }
     },
 
@@ -211,7 +219,24 @@ export default {
         AddToCart(id){
             axios.get('/api/addToCart/'+id)
                  .then(()=>{
+                    Reload.$emit('AfterAdd');
                     Notification.cart_success()
+                 })
+                 .catch()
+        },
+        cartProduct(){
+            axios.get('/api/cart/product/')
+                .then(({
+                    data
+                }) => (this.carts  = data))
+                .catch()
+        },
+
+        removeItem(id){
+            axios.get('/api/remove/cart/'+id)
+                 .then(()=>{
+                    Reload.$emit('AfterAdd');
+                    Notification.cart_delete()
                  })
                  .catch()
         },
@@ -260,6 +285,7 @@ export default {
 .catSearch {
     width: 95%;
     margin: auto;
-
 }
+
+
 </style>

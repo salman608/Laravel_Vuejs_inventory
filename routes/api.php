@@ -56,4 +56,7 @@ Route::apiResource('customer', CustomerController::class);
 
 Route::get('getting/product/{id}', [PosController::class, 'getProduct']);
 
-Route::Get('addToCart/{id}', [CartController::class, 'AddToCart']);
+Route::Get('/addToCart/{id}', [CartController::class, 'AddToCart']);
+Route::Get('/cart/product', [CartController::class, 'CartProduct']);
+
+Route::Get('/remove/cart/{id}', [CartController::class, 'removeCart']);

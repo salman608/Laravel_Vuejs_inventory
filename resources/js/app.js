@@ -21,6 +21,8 @@ window.Notification=Notification;
 import Swal from 'sweetalert2';
 window.Swal=Swal;
 
+window.Reload=new Vue();
+
 const Toast = Swal.mixin({
   toast: true,
   position: 'top-end',
