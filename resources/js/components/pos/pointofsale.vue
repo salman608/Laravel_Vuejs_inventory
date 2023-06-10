@@ -109,7 +109,7 @@
                             <div class="card-body">
                                 <div class="row">
                                     <div class="cl-lg-3 col-md-3 col-sm-6 col-6" v-for="product in filtersearch" :key="product.id">
-                                        <a href="">
+                                        <button class="btn btn-sm" @click.prevent="AddToCart(product.id)">
                                             <div class="card mb-2" style="width:8.5rem">
                                                 <img :src="product.product_image" alt="" id="em_photo" class="card-img-top">
                                                 <div class="card-body">
@@ -122,7 +122,7 @@
                                                     </td>
                                                 </div>
                                             </div>
-                                        </a>
+                                        </button>
                                     </div>
                                 </div>
                             </div>
@@ -132,7 +132,7 @@
                             <div class="row">
                                 <input type="text" v-model="getSearchTerm" class="form-control catSearch" placeholder="Search Here....">
                                 <div class="cl-lg-3 col-md-3 col-sm-6 col-6" v-for="getproduct in getfiltersearch" :key="getproduct.id">
-                                    <a href="">
+                                    <button class="btn btn-sm" @click.prevent="AddToCart(product.id)">
                                         <div class="card mt-2 mb-2 " style="width:8.5rem">
                                             <img :src="getproduct.product_image" alt="" id="em_photo" class="card-img-top">
                                             <div class="card-body">
@@ -145,7 +145,7 @@
                                                 </td>
                                             </div>
                                         </div>
-                                    </a>
+                                    </button>
                                 </div>
                             </div>
                         </div>
@@ -207,6 +207,14 @@ export default {
     },
 
     methods: {
+        //add to cart
+        AddToCart(id){
+            axios.get('/api/addToCart/'+id)
+                 .then(()=>{
+                    Notification.cart_success()
+                 })
+                 .catch()
+        },
         allProduct() {
             axios.get('/api/product/')
                 .then(({

@@ -44,6 +44,14 @@ class Notification{
         }).show();
    }
 
+   cart_success(){
+    new Noty({
+        type:'success',
+        layout:'topRight',
+        text: 'Product successfully added!',
+        timeout:1000,
+        }).show();
+   }
 
 
    }

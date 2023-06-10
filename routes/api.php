@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\CartController;
 use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\Api\CustomerController;
 use App\Http\Controllers\Api\EmployeeController;
@@ -54,3 +55,5 @@ Route::post('stock/update/{id}', [ProductController::class, 'stockUpdate']);
 Route::apiResource('customer', CustomerController::class);
 
 Route::get('getting/product/{id}', [PosController::class, 'getProduct']);
+
+Route::Get('addToCart/{id}', [CartController::class, 'AddToCart']);
