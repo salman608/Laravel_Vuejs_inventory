@@ -64,10 +64,10 @@
                         </ul>
                         <br>
 
-                        <form>
+                        <form @submit.prevent="Order">
                             <label for="">Customer Name</label>
                             <select class="form-control" v-model="customer_id">
-                                <option value="" v-for="customer in customers" :key="customer.id">{{ customer.customer_name }}</option>
+                                <option :value="customer.id" v-for="customer in customers" :key="customer.id">{{ customer.customer_name }}</option>
 
                             </select>
 
@@ -78,7 +78,7 @@
                             <input type="text" class="form-control" v-model="due">
 
                             <label for="">Pay By</label>
-                            <select class="form-control" v-model="customer_id">
+                            <select class="form-control" v-model="payby">
                                 <option value="HandCash">HandCash</option>
                                 <option value="Cheaqe">Cheaqe</option>
                                 <option value="GiftCard">GiftCard</option>
@@ -190,6 +190,12 @@ export default {
 
     data() {
         return {
+            //order field
+            customer_id: '',
+            pay: '',
+            due: '',
+            payby: '',
+
             products: [],
             categories: '',
             getproducts: [],
@@ -223,10 +229,10 @@ export default {
             }
             return sum;
         },
-        subtotal(){
+        subtotal() {
             let sum = 0;
             for (let i = 0; i < this.carts.length; i++) {
-                sum += (parseFloat(this.carts[i].pro_quantity)* parseFloat(this.carts[i].product_price));
+                sum += (parseFloat(this.carts[i].pro_quantity) * parseFloat(this.carts[i].product_price));
             }
             return sum;
         },
@@ -312,6 +318,28 @@ export default {
                 }) => (this.getproducts = data))
                 .catch()
         },
+
+        Order() {
+            let total = this.subtotal * this.vats.vat / 100 + this.subtotal;
+            var data = {
+                qty: this.qty,
+                subtotal: this.subtotal,
+                customer_id: this.customer_id,
+                pay: this.pay,
+                payby: this.payby,
+                vat: this.vat,
+                due: this.due,
+                total: total
+            }
+
+            axios.post('/api/order/complete',data)
+                    .then(() => {
+                        Notification.success()
+                        this.$router.push({name:'home'});
+                    })
+        },
+
+
     },
 
 }
