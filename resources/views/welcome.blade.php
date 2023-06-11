@@ -185,6 +185,22 @@
                         </div>
                     </li>
 
+                    <li class="nav-item">
+                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#orderPage"
+                            aria-expanded="true" aria-controls="orderPage">
+                            <i class="fas fa-fw fa-columns"></i>
+                            <span>Order Product</span>
+                        </a>
+                        <div id="orderPage" class="collapse" aria-labelledby="headingPage"
+                            data-parent="#accordionSidebar">
+                            <div class="bg-white py-2 collapse-inner rounded">
+                                <router-link class="collapse-item" to="/order">Today Order</router-link>
+                                <router-link class="collapse-item" to="/salary">Search</router-link>
+
+                            </div>
+                        </div>
+                    </li>
+
 
 
 
