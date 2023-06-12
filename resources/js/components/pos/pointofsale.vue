@@ -327,7 +327,7 @@ export default {
                 customer_id: this.customer_id,
                 pay: this.pay,
                 payby: this.payby,
-                vat: this.vat,
+                vat: this.vats.vat,
                 due: this.due,
                 total: total
             }

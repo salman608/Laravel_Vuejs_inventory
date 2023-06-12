@@ -26,9 +26,9 @@
                     <tbody>
                       <tr v-for="order in filtersearch" :key="order.id">
                         <td>{{ order.customer_name }}</td>
-                        <td>{{ order.total }}</td>
-                        <td>{{ order.pay }}</td>
-                        <td>{{ order.due }}</td>
+                        <td>{{ order.total }} $</td>
+                        <td>{{ order.pay }} $</td>
+                        <td>{{ order.due }} $</td>
                         <td>{{ order.payby }}</td>
                         <td>
                             <router-link :to="{name:'view-order', params:{id:order.id}}" class="btn btn-sm btn-info">View</router-link>
