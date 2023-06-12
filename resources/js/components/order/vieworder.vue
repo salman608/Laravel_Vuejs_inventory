@@ -34,7 +34,7 @@
                                 <div class="table-responsive">
                                     <ul class="list-group">
                                         <li class="list-group-item"><b>Sub Total :</b> {{ orders.sub_total }} $</li>
-                                        <li class="list-group-item"><b>Vat :</b> {{ orders.vat }} $</li>
+                                        <li class="list-group-item"><b>Vat :</b> {{ orders.vat }} %</li>
                                         <li class="list-group-item"><b>Total :</b> {{ orders.total }} $</li>
                                         <li class="list-group-item"><b>Pay Amount :</b> {{ orders.pay }} $</li>
                                         <li class="list-group-item"><b>Due Amount :</b> {{ orders.due }} $</li>
@@ -44,46 +44,44 @@
                             </div>
                         </div>
                     </div>
-<br>
+                    <br>
                     <div class="row">
                         <div class="col-lg-12 mb-4">
 
-            <div class="card">
-                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                    <h6 class="m-0 font-weight-bold text-primary">Order List</h6>
+                            <div class="card">
+                                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                    <h6 class="m-0 font-weight-bold text-primary">Order List</h6>
 
+                                </div>
+                                <div class="table-responsive">
+                                    <table class="table align-items-center table-flush">
+                                        <thead class="thead-light">
+                                            <tr>
+                                                <th>Product Name</th>
+                                                <th>Product Code</th>
+                                                <th>Image</th>
+                                                <th>Qty</th>
+                                                <th>Unit Price</th>
+                                                <th>Total Proce</th>
 
-                </div>
-                <div class="table-responsive">
-                    <table class="table align-items-center table-flush">
-                        <thead class="thead-light">
-                            <tr>
-                                <th>Product Name</th>
-                                <th>Product Code</th>
-                                <th>Image</th>
-                                <th>Qty</th>
-                                <th>Unit Price</th>
-                                <th>Total Proce</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr v-for="detail in details" :key="detail.id">
+                                                <td>{{ detail.product_name }}</td>
+                                                <td>{{ detail.product_code }}</td>
+                                                <td><img :src="'/'+detail.product_image" alt="" id="em_photo"></td>
+                                                <td>{{ detail.product_quantity }}</td>
+                                                <td>{{ detail.product_price }}$</td>
+                                                <td>৳ {{ detail.sub_total }}$</td>
 
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr v-for="detail in details" :key="detail.id">
-                                <td>{{ detail.product_name }}</td>
-                                <td>{{ detail.product_code }}</td>
-                                <td><img :src="'/'+detail.product_image" alt="" id="em_photo"></td>
-                                <td>{{ detail.product_quantity }}</td>
-                                <td>{{ detail.product_price }}$</td>
-                                <td>৳ {{ detail.sub_total }}$</td>
-
-
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div class="card-footer"></div>
-            </div>
-        </div>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="card-footer"></div>
+                            </div>
+                        </div>
                     </div>
 
                 </div>
@@ -138,8 +136,8 @@ export default {
 }
 </script>
 
-<style type="text/css">
-#em_photo{
+<style>
+#em_photo {
     width: 40px;
     height: 40px;
 }

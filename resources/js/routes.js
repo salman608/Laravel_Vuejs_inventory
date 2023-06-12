@@ -52,6 +52,7 @@ let pos=require('./components/pos/pointofsale.vue').default;
 
 let Order=require('./components/order/Order.vue').default;
 let ViewOrder=require('./components/order/vieworder.vue').default;
+let searchOrder=require('./components/order/Searchorder.vue').default;
 
 
 
@@ -109,5 +110,6 @@ export const routes = [
     //order
     { path: '/order', component: Order , name:'order' },
     { path: '/view-order/:id', component: ViewOrder , name:'view-order' },
+    { path: '/search-order', component: searchOrder , name:'search-order' },
 
 ]

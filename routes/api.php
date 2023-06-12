@@ -72,3 +72,6 @@ Route::Post('/order/complete', [PosController::class, 'OrderComplete']);
 Route::Get('/orders', [OrderController::class, 'TodayOrder']);
 Route::Get('/orders/details/{id}', [OrderController::class, 'OrderDetails']);
 Route::Get('/order/orderdetails/{id}', [OrderController::class, 'OrderDetailsAll']);
+
+
+Route::Post('/search/order', [OrderController::class, 'SearchOrder']);

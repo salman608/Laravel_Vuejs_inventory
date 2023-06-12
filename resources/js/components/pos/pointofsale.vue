@@ -323,7 +323,7 @@ export default {
             let total = this.subtotal * this.vats.vat / 100 + this.subtotal;
             var data = {
                 qty: this.qty,
-                subtotal: this.subtotal,
+                subtotal: this.sub_total,
                 customer_id: this.customer_id,
                 pay: this.pay,
                 payby: this.payby,
